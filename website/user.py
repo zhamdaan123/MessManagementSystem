@@ -13,7 +13,7 @@ def is_user_logged_in():
         return redirect(url_for("auth.login"))
 
 
-@user.route("/menu")
+@user.route("/menu/")
 def menu():
     foods = db.Foods.find({})
     return render_template("menu.html", foods=foods)
