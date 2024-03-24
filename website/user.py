@@ -19,7 +19,7 @@ def menu():
     return render_template("menu.html", foods=foods)
 
 
-@user.route("/order/<food_id>", methods=["POST"])
+@user.route("/order/<food_id>/", methods=["POST"])
 def order(food_id):
     try:
         food = db.Foods.find_one({"_id": ObjectId(food_id)})

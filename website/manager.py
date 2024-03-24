@@ -21,7 +21,7 @@ def dashboard():
     return render_template("manager/dashboard.html", data=data)
 
 
-@manager.route("/orders")
+@manager.route("/orders/")
 def orders():
     pipeline = [
         {"$group": {"_id": "$food_id", "quantity": {"$sum": 1}}},
