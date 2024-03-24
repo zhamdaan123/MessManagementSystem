@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+{% set page_title = 'Home' %}
+{% set nav_title = 'Home' %}
+
+{% block page_style %}{% endblock %}
+
+{% block page_body %}
+
+<div class="container my-5 py-5">
+  <h1 class="display-1 my-5 fw-bold">{{website_info.name}}</h1>
+
+  {% if session.user %}
+  <a href="{{url_for('user.menu')}}" class="btn btn-lg btn-custom p-3 px-5 fw-semibold border-0 rounded-5">Order food</a>
+  {% else %}
+  <div class="d-flex gap-3 mt-5 flex-wrap">
+    <a class="btn btn-lg btn-dark border-0 p-3 px-5 rounded-5" href="{{url_for('auth.login')}}">Login</a>
+    <a class="btn btn-lg btn-custom p-3 px-5 fw-semibold border-0 rounded-5" href="{{url_for('auth.register')}}">
+      Sign Up
+    </a>
+  </div>
+  {% endif %}
+</div>
+
+{% if session.user %}
+{% if not session.user.verified %}
+<div class="alert alert-danger">
+  <strong>Email verficiation pending.</strong>
+  An email has been sent to you for verficiation.
+  <a class="resend-otp" href="" data-url="{{url_for('auth.resend_otp', reason='email')}}">Resend</a>
+</div>
+{% endif %}
+{% endif %}
+
+{% endblock %}
+
+{% block page_script %}{% endblock %}

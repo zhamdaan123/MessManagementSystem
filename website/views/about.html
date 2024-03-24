@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% set page_title = 'About' %}
+{% set nav_title = 'About' %}
+
+{% block page_style %}
+<link rel="stylesheet" href="{{url_for('static',filename='custom/css/about.css')}}">
+{% endblock %}
+
+{% block page_body %}
+
+<div class="container my-5 py-5">
+  <h1 class="display-1 my-5 fw-bold">About Us</h1>
+</div>
+
+{% endblock %}
+
+{% block page_script %}{% endblock %}
