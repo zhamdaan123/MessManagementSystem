@@ -39,7 +39,7 @@ def orders():
     return render_template("manager/orders.html", orders=orders)
 
 
-@manager.route("/foods")
+@manager.route("/foods/")
 def foods():
     foods = db.Foods.find({})
     return render_template("manager/foods.html", foods=foods)
