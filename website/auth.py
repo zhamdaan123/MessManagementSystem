@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 from . import db
 from .forms import RegisterForm, LoginForm, encrypt_message
-from bson import json_util, ObjectId
+from bson import ObjectId
 from datetime import datetime
 from .mailer import mail_otp
 
@@ -16,7 +16,7 @@ def is_user_logged_in():
 
 
 def add_user_to_session(user: dict, remember: bool = False):
-    user["_id"] = json_util.dumps(user["_id"]).split('"')[3]
+    user["_id"] = str(user["_id"])
     session["user"] = user
     session.permanent = remember
 
