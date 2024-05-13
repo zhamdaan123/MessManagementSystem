@@ -9,22 +9,22 @@
 {% block page_body %}
 
 <div class="container my-5 py-lg-5">
-  <h1 class="display-1 my-5 fw-bold">Order food for today</h1>
+  <h1 class="display-1 my-5 fw-bold text-center">Order food for today</h1>
 
-  <div class="row row-gap-1 row-gap-lg-3 row-cols-2 row-cols-lg-3 mt-5 pt-lg-5">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 mt-5 pt-lg-5">
     {% for food in foods %}
     <div class="col">
-      <form action="{{url_for('user.order',food_id=food._id)}}" method="post">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-        <div class="card bg-transparent food-card border-0">
-          <img src="{{food.image}}" class="card-img-top rounded-5">
-          <div class="card-body">
-            <h5 class="card-title">{{food.name}}</h5>
-            <p class="card-text">Credits: {{food.credits}}</p>
-            <button class="stretched-link btn btn-dark opacity-0 p-0 border-0">Order</button>
-          </div>
+      <div class="card h-100 border-0 shadow">
+        <img src="{{food.image}}" class="card-img-top rounded-top" alt="{{food.name}}">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{food.name}}</h5>
+          <p class="card-text mb-0">Credits: {{food.credits}}</p>
+          <form action="{{url_for('user.order', food_id=food._id)}}" method="post" class="mt-auto">
+            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+            <button type="submit" class="btn btn-primary w-100 mt-3">Order Now</button>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
     {% endfor %}
   </div>
